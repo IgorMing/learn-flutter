@@ -1,4 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+
 import './textfield.dart';
 import './item.dart';
 
@@ -23,6 +28,19 @@ class _SimpleList extends State<SimpleList> {
       _items.removeAt(index);
     });
   }
+
+  Future<File> _getFile() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    return File("${directory.path}/data.json");
+  }
+
+  void _saveData() async {
+    String data = json.encode(_items);
+    final File file = await _getFile();
+    file.writeAsStringSync(data);
+  }
+
+  Future<String> _readData() async {}
 
   @override
   Widget build(BuildContext context) {

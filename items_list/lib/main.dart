@@ -27,6 +27,7 @@ class _AppState extends State<App> {
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: AppBarTheme(color: Colors.blueGrey),
+        accentColor: Colors.blueGrey,
       ),
       home: Scaffold(
         bottomNavigationBar: BottomNavigationBar(

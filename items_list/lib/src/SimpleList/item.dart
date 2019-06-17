@@ -15,7 +15,15 @@ class Item extends StatelessWidget {
         children: <Widget>[
           Expanded(
             flex: 5,
-            child: ListTile(
+            child: CheckboxListTile(
+              value: true,
+              secondary: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                child: Icon(
+                  Icons.check_circle_outline,
+                  color: Theme.of(context).accentColor,
+                ),
+              ),
               title: Text(
                 title,
                 maxLines: 1,
@@ -23,19 +31,7 @@ class Item extends StatelessWidget {
                 style: TextStyle(fontSize: 22),
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: IconButton(
-              onPressed: () {
-                onDelete(this.index);
-              },
-              icon: Icon(
-                Icons.delete_outline,
-                size: 30,
-              ),
-            ),
-          ),
+          )
         ],
       ),
     );
