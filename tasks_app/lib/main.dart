@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasks_app/src/home.dart';
-import 'package:tasks_app/src/screen-2.dart';
-import 'package:tasks_app/src/screen-3.dart';
+import 'package:tasks_app/src/screens/home.dart';
+import 'package:tasks_app/routes.dart';
 
 void main() => runApp(App());
 
@@ -15,11 +14,7 @@ class App extends StatelessWidget {
         primaryColor: Colors.blueGrey,
       ),
       home: Home(),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => Home(),
-        '/screen2': (BuildContext context) => Screen2(),
-        '/screen3': (BuildContext context) => Screen3(),
-      },
+      routes: appRoutes(),
       title: "Tasks app",
     );
   }
