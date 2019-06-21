@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app/src/widgets/list.dart';
+import 'package:tasks_app/src/widgets/rounded_button.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -18,20 +19,7 @@ class Home extends StatelessWidget {
         color: Theme.of(context).backgroundColor,
         child: Column(
           children: <Widget>[
-            RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, "/details");
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              elevation: 8.0,
-              padding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 20.0),
-              child: Text(
-                "ADD TASK",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+            RoundedButton("ADD TASK"),
             Expanded(
               child: TaskList(_items),
             ),
