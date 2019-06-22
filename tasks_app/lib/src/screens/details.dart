@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:tasks_app/src/widgets/input_text.dart';
 
+class DetailsArguments {
+  final Function onSave;
+
+  DetailsArguments(this.onSave);
+}
+
 class Details extends StatefulWidget {
+  static const routeName = '/details';
+  final Function onPressed;
+
+  Details({@required this.onPressed});
+
   @override
   _DetailsState createState() => _DetailsState();
 }
@@ -18,7 +29,7 @@ class _DetailsState extends State<Details> {
         centerTitle: true,
         actions: <Widget>[
           RaisedButton(
-            onPressed: () {},
+            onPressed: widget.onPressed,
             child: Text(
               "Save",
               style: TextStyle(

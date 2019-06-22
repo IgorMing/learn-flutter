@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
+  final Function onPressed;
 
-  RoundedButton(this.text);
+  RoundedButton(this.text, this.onPressed);
 
   @override
   Widget build(BuildContext context) {
     return RaisedButton(
-      onPressed: () {
-        Navigator.pushNamed(context, "/details");
-      },
+      onPressed: this.onPressed,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tasks_app/src/screens/home.dart';
 import 'package:tasks_app/routes.dart';
 
 void main() => runApp(App());
@@ -13,8 +12,8 @@ class App extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         primaryColor: Colors.blueGrey,
       ),
-      home: Home(),
-      routes: appRoutes(),
+      initialRoute: '/',
+      onGenerateRoute: RouterGenerator.generateRoutes,
       title: "Tasks app",
     );
   }
