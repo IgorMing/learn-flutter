@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tasks_app/src/screens/home.dart';
 import 'package:tasks_app/src/widgets/input_text.dart';
 
 class DetailsArguments {
@@ -9,16 +10,37 @@ class DetailsArguments {
 
 class Details extends StatefulWidget {
   static const routeName = '/details';
-  final Function onPressed;
+  final Function onSave;
 
-  Details({@required this.onPressed});
+  Details({@required this.onSave});
 
   @override
   _DetailsState createState() => _DetailsState();
 }
 
 class _DetailsState extends State<Details> {
+  final _formKey = GlobalKey<FormState>();
   bool _isReady = false;
+  static Map<String, TextEditingController> staticControllers = {
+    "name": TextEditingController(),
+    "description": TextEditingController(),
+  };
+
+  final Map _controllers = Map.of(staticControllers);
+
+  void _onSave() {
+    if (!this._formKey.currentState.validate()) {
+      return;
+    }
+
+    final String _description =
+        (_controllers["description"] as TextEditingController).value.text;
+    final String _name =
+        (_controllers["name"] as TextEditingController).value.text;
+
+    widget
+        .onSave(Item(_name, description: _description, isReady: this._isReady));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +51,7 @@ class _DetailsState extends State<Details> {
         centerTitle: true,
         actions: <Widget>[
           RaisedButton(
-            onPressed: widget.onPressed,
+            onPressed: this._onSave,
             child: Text(
               "Save",
               style: TextStyle(
@@ -41,15 +63,25 @@ class _DetailsState extends State<Details> {
         ],
       ),
       body: Container(
+        alignment: Alignment.center,
         color: Theme.of(context).backgroundColor,
-        child: Container(
-          alignment: Alignment.center,
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: Form(
+          key: this._formKey,
           child: Column(
             children: <Widget>[
-              InputText("Name"),
+              InputText(
+                "Name",
+                controller: _controllers["name"],
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return "This field is required";
+                  }
+                },
+              ),
               InputText(
                 "Description",
+                controller: _controllers["description"],
                 numberOfLines: 2,
               ),
               Row(

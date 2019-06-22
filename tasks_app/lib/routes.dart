@@ -13,7 +13,7 @@ class RouterGenerator {
         final DetailsArguments args = settings.arguments;
         return MaterialPageRoute(
           builder: (_) => Details(
-                onPressed: args.onSave,
+                onSave: args.onSave,
               ),
         );
       default:

@@ -21,8 +21,18 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Item> _items = [];
 
-  void _addItem() {
-    print("it's called");
+  void _addItem(Item item) {
+    /**
+     * TODO: Continue from here
+     * 
+     * Step 1 - Add this values to _items
+     * Step 2 - Enable edit
+     * Step 3 - Enable deletion by horizontal scroll
+     * Step 4 - Save and get information to/from a json file
+     */
+    print(item.name);
+    print(item.description);
+    print(item.isReady);
   }
 
   @override
@@ -30,8 +40,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor,
-        title: Text("Home"),
         centerTitle: true,
+        title: Text("Home"),
       ),
       body: Container(
         alignment: Alignment.center,
