@@ -22,6 +22,7 @@ class _HomeState extends State<Home> {
   List<Item> _items = [];
 
   void _addItem(Item item) {
+    _items.add(item);
     /**
      * TODO: Continue from here
      * 
@@ -30,9 +31,6 @@ class _HomeState extends State<Home> {
      * Step 3 - Enable deletion by horizontal scroll
      * Step 4 - Save and get information to/from a json file
      */
-    print(item.name);
-    print(item.description);
-    print(item.isReady);
   }
 
   @override

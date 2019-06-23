@@ -20,23 +20,17 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
   bool _isReady = false;
-  static Map<String, TextEditingController> staticControllers = {
-    "name": TextEditingController(),
-    "description": TextEditingController(),
-  };
-
-  final Map _controllers = Map.of(staticControllers);
 
   void _onSave() {
     if (!this._formKey.currentState.validate()) {
       return;
     }
 
-    final String _description =
-        (_controllers["description"] as TextEditingController).value.text;
-    final String _name =
-        (_controllers["name"] as TextEditingController).value.text;
+    final String _description = _descriptionController.value.text;
+    final String _name = _nameController.value.text;
 
     widget
         .onSave(Item(_name, description: _description, isReady: this._isReady));
@@ -72,7 +66,7 @@ class _DetailsState extends State<Details> {
             children: <Widget>[
               InputText(
                 "Name",
-                controller: _controllers["name"],
+                controller: _nameController,
                 validator: (String value) {
                   if (value.isEmpty) {
                     return "This field is required";
@@ -81,7 +75,7 @@ class _DetailsState extends State<Details> {
               ),
               InputText(
                 "Description",
-                controller: _controllers["description"],
+                controller: _descriptionController,
                 numberOfLines: 2,
               ),
               Row(
